@@ -42,6 +42,7 @@ const questions = [
     name: "createTeam",
     message: "Which team member do you want to add?",
     choices: ["Engineer", "Intern", "None"],
+    //when: (answers) => answers.newEmployee === true,
   },
   // Questions for the Engineer information. Conditional question prompts when "Engineer" choice is selected
   {
@@ -52,17 +53,29 @@ const questions = [
   },
   {
     type: "input",
-    name: "engineerName",
+    name: "internName",
     message: "What is the Intern's name?",
     when: (answers) => answers.createTeam === "Intern",
+  },
+  {
+    type: "confirm",
+    name: "newEmployee",
+    message: "Would you like to add another Team Member?",
   },
 ];
 // 2) prompt for which team member to create
 
-inquirer.prompt(questions).then((answers) => {
-  console.log(answers);
-});
+// basic structure to loop through questions. Will need to split questions for intern and engineers
+const ask = () => {
+  inquirer.prompt(questions).then((answers) => {
+    console.log(answers);
+    if (answers.newEmployee) {
+      ask();
+    } else console.log("done");
+  });
+};
 
+ask();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
