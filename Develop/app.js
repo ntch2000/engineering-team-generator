@@ -14,8 +14,9 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // 1) prompt for manager information
-// Questions for the manager information
-const managerQuestions = [
+
+const questions = [
+  // Questions for the manager information
   {
     type: "input",
     name: "managerName",
@@ -36,10 +37,29 @@ const managerQuestions = [
     name: "managerOfficeNumber",
     message: "What is the Manager's Office Number?",
   },
+  {
+    type: "list",
+    name: "createTeam",
+    message: "Which team member do you want to add?",
+    choices: ["Engineer", "Intern", "None"],
+  },
+  // Questions for the Engineer information. Conditional question prompts when "Engineer" choice is selected
+  {
+    type: "input",
+    name: "engineerName",
+    message: "What is the Engineer's name?",
+    when: (answers) => answers.createTeam === "Engineer",
+  },
+  {
+    type: "input",
+    name: "engineerName",
+    message: "What is the Intern's name?",
+    when: (answers) => answers.createTeam === "Intern",
+  },
 ];
 // 2) prompt for which team member to create
 
-inquirer.prompt(managerQuestions).then((answers) => {
+inquirer.prompt(questions).then((answers) => {
   console.log(answers);
 });
 
