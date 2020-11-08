@@ -13,7 +13,7 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-const output = [];
+const employees = [];
 // 1) prompt for manager information
 
 const createManager = () => {
@@ -42,8 +42,23 @@ const createManager = () => {
   ];
 
   inquirer.prompt(managerQuestions).then((answers) => {
+    const {
+      managerName,
+      managerId,
+      managerEmail,
+      managerOfficeNumber,
+    } = answers;
+
+    // create manager object
+    const manager = new Manager(
+      managerName,
+      managerId,
+      managerEmail,
+      managerOfficeNumber
+    );
+    employees.push(manager);
+    //console.log(manager);
     newTeamMember();
-    //console.log(answers.createTeam);
   });
 };
 
@@ -54,58 +69,91 @@ const newTeamMember = () => {
       name: "createTeam",
       message: "Which team member do you want to add?",
       choices: ["Engineer", "Intern", "None"],
-      //default: true,
-      //when: (answers) => answers.newEmployee === true,
     },
   ];
   inquirer.prompt(teamQuestion).then((answers) => {
     if (answers.createTeam === "Engineer") createEngineer();
     else if (answers.createTeam === "Intern") createIntern();
-    else console.log("Done!");
+    else {
+      console.log(employees);
+      console.log("Done!");
+    }
   });
 };
 
 const createEngineer = () => {
   const engineerQuestions = [
-    // Questions for the Engineer information. Conditional question prompts when "Engineer" choice is selected
+    // Questions for the Engineer information.
     {
       type: "input",
       name: "engineerName",
       message: "What is the Engineer's name?",
-      //when: (answers) => answers.createTeam === "Engineer",
+    },
+
+    {
+      type: "input",
+      name: "engineerId",
+      message: "What is the Engineer's ID Number?",
     },
     {
-      type: "confirm",
-      name: "newEmployee",
-      message: "Would you like to add another Team Member?",
+      type: "input",
+      name: "engineerEmail",
+      message: "What is the Engineer's Email?",
+    },
+    {
+      type: "input",
+      name: "engineerGithub",
+      message: "What is the Engineer's GitHub?",
     },
   ];
 
   inquirer.prompt(engineerQuestions).then((answers) => {
-    console.log(answers);
-    if (answers.newEmployee === true) newTeamMember();
+    const { engineerName, engineerId, engineerEmail, engineerGithub } = answers;
+
+    // create manager object
+    const engineer = new Engineer(
+      engineerName,
+      engineerId,
+      engineerEmail,
+      engineerGithub
+    );
+    employees.push(engineer);
+    newTeamMember();
   });
 };
 
 const createIntern = () => {
   const internQuestions = [
-    // Questions for the Engineer information. Conditional question prompts when "Engineer" choice is selected
+    // Questions for the Intern information.
     {
       type: "input",
       name: "internName",
       message: "What is the Intern's name?",
-      //when: (answers) => answers.createTeam === "Intern",
     },
     {
-      type: "confirm",
-      name: "newEmployee",
-      message: "Would you like to add another Team Member?",
+      type: "input",
+      name: "internId",
+      message: "What is the Intern's ID Number?",
+    },
+    {
+      type: "input",
+      name: "internEmail",
+      message: "What is the Intern's Email?",
+    },
+    {
+      type: "input",
+      name: "internSchool",
+      message: "What is the Intern's School?",
     },
   ];
 
   inquirer.prompt(internQuestions).then((answers) => {
-    console.log(answers);
-    if (answers.newEmployee === true) newTeamMember();
+    const { internName, internId, internEmail, internSchool } = answers;
+
+    // create manager object
+    const intern = new Intern(internName, internId, internEmail, internSchool);
+    employees.push(intern);
+    newTeamMember();
   });
 };
 
