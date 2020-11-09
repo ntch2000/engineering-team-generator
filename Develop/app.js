@@ -76,6 +76,7 @@ const newTeamMember = () => {
     else if (answers.createTeam === "Intern") createIntern();
     else {
       console.log(employees);
+      writeTeamPage(render(employees));
       console.log("Done!");
     }
   });
@@ -171,6 +172,18 @@ createManager();
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
+
+const writeTeamPage = (data) => {
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdir(OUTPUT_DIR, (err) => {
+      if (err) throw err;
+    });
+  }
+  fs.writeFile(outputPath, data, (err) => {
+    if (err) throw err;
+    console.log("Team Page Generated!");
+  });
+};
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
