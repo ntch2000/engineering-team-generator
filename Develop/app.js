@@ -33,6 +33,11 @@ const createManager = () => {
       type: "input",
       name: "managerId",
       message: "What is the Manager's ID Number?",
+      // validates if the user enters a number using regex expression
+      validate: (value) => {
+        if (value.match(/^\d+$/)) return true;
+        else return "Please enter a valid ID Number.";
+      },
     },
     {
       type: "input",
@@ -48,6 +53,11 @@ const createManager = () => {
       type: "input",
       name: "managerOfficeNumber",
       message: "What is the Manager's Office Number?",
+      // validates if the user enters a number using regex expression
+      validate: (value) => {
+        if (value.match(/^\d+$/)) return true;
+        else return "Please enter a valid ID Number.";
+      },
     },
   ];
 
@@ -112,6 +122,11 @@ const createEngineer = () => {
       type: "input",
       name: "engineerId",
       message: "What is the Engineer's ID Number?",
+      // validates if the user enters a number using regex expression
+      validate: (value) => {
+        if (value.match(/^\d+$/)) return true;
+        else return "Please enter a valid ID Number.";
+      },
     },
     {
       type: "input",
@@ -162,6 +177,11 @@ const createIntern = () => {
       type: "input",
       name: "internId",
       message: "What is the Intern's ID Number?",
+      // validates if the user enters a number using regex expression
+      validate: (value) => {
+        if (value.match(/^\d+$/)) return true;
+        else return "Please enter a valid ID Number.";
+      },
     },
     {
       type: "input",
