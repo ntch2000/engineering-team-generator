@@ -23,6 +23,11 @@ const createManager = () => {
       type: "input",
       name: "managerName",
       message: "What is the Manager's name?",
+      // validation to ensure the user enters a name longer than 1 character
+      validate: (value) => {
+        if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
+        else return "Please enter a name!";
+      },
     },
     {
       type: "input",
@@ -33,6 +38,11 @@ const createManager = () => {
       type: "input",
       name: "managerEmail",
       message: "What is the Manager's email?",
+      // uses regex to validate the user enters a proper email address
+      validate: (value) => {
+        if (value.match(/\S+@\S+\.\S+/)) return true;
+        else return "Please enter a valid email.";
+      },
     },
     {
       type: "input",
@@ -75,6 +85,9 @@ const newTeamMember = () => {
     if (answers.createTeam === "Engineer") createEngineer();
     else if (answers.createTeam === "Intern") createIntern();
     else {
+      // After the user has input all employees desired, call the `render` function (required
+      // above) and pass in an array containing all employee objects; the `render` function will
+      // generate and return a block of HTML including templated divs for each employee!
       console.log(employees);
       writeTeamPage(render(employees));
       console.log("Done!");
@@ -89,8 +102,12 @@ const createEngineer = () => {
       type: "input",
       name: "engineerName",
       message: "What is the Engineer's name?",
+      // validation to ensure the user enters a name longer than 1 character
+      validate: (value) => {
+        if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
+        else return "Please enter a name!";
+      },
     },
-
     {
       type: "input",
       name: "engineerId",
@@ -100,6 +117,11 @@ const createEngineer = () => {
       type: "input",
       name: "engineerEmail",
       message: "What is the Engineer's Email?",
+      // uses regex to validate the user enters a proper email address
+      validate: (value) => {
+        if (value.match(/\S+@\S+\.\S+/)) return true;
+        else return "Please enter a valid email.";
+      },
     },
     {
       type: "input",
@@ -130,6 +152,11 @@ const createIntern = () => {
       type: "input",
       name: "internName",
       message: "What is the Intern's name?",
+      // validation to ensure the user enters a name longer than 1 character
+      validate: (value) => {
+        if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
+        else return "Please enter a name!";
+      },
     },
     {
       type: "input",
@@ -140,11 +167,21 @@ const createIntern = () => {
       type: "input",
       name: "internEmail",
       message: "What is the Intern's Email?",
+      // uses regex to validate the user enters a proper email address
+      validate: (value) => {
+        if (value.match(/\S+@\S+\.\S+/)) return true;
+        else return "Please enter a valid email.";
+      },
     },
     {
       type: "input",
       name: "internSchool",
       message: "What is the Intern's School?",
+      // validation to ensure the user enters a school name longer than 1 character
+      validate: (value) => {
+        if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
+        else return "Please enter a name!";
+      },
     },
   ];
 
@@ -159,13 +196,6 @@ const createIntern = () => {
 };
 
 createManager();
-// 2) prompt for which team member to create
-
-// basic structure to loop through questions. Will need to split questions for intern and engineers
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
@@ -173,7 +203,9 @@ createManager();
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
+// creates the final html page with all employee data and html files
 const writeTeamPage = (data) => {
+  // checks to see if the output directory exists and creates it if it does not exist
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdir(OUTPUT_DIR, (err) => {
       if (err) throw err;
