@@ -46,7 +46,7 @@ const createManager = () => {
       // uses regex to validate the user enters a proper email address
       validate: (value) => {
         if (value.match(/\S+@\S+\.\S+/)) return true;
-        else return "Please enter a valid email.";
+        else return "Please enter a valid email (example@email.com).";
       },
     },
     {
@@ -135,13 +135,17 @@ const createEngineer = () => {
       // uses regex to validate the user enters a proper email address
       validate: (value) => {
         if (value.match(/\S+@\S+\.\S+/)) return true;
-        else return "Please enter a valid email.";
+        else return "Please enter a valid email (example@email.com).";
       },
     },
     {
       type: "input",
       name: "engineerGithub",
       message: "What is the Engineer's GitHub?",
+      validate: (value) => {
+        if (value.length > 0) return true;
+        else return "Please enter a GitHub username!";
+      },
     },
   ];
 
@@ -190,7 +194,7 @@ const createIntern = () => {
       // uses regex to validate the user enters a proper email address
       validate: (value) => {
         if (value.match(/\S+@\S+\.\S+/)) return true;
-        else return "Please enter a valid email.";
+        else return "Please enter a valid email (example@email.com).";
       },
     },
     {
@@ -200,7 +204,7 @@ const createIntern = () => {
       // validation to ensure the user enters a school name longer than 1 character
       validate: (value) => {
         if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
-        else return "Please enter a name!";
+        else return "Please enter a School!";
       },
     },
   ];
@@ -216,6 +220,10 @@ const createIntern = () => {
 };
 
 createManager();
+
+//=====================
+// Delete pseudocode instructions
+//==========================
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
@@ -236,6 +244,10 @@ const writeTeamPage = (data) => {
     console.log("Team Page Generated!");
   });
 };
+
+//================================
+// Delete below here
+//================================
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
