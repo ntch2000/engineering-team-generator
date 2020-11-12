@@ -10,9 +10,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
 const employees = [];
 // 1) prompt for manager information
 
@@ -25,8 +22,8 @@ const createManager = () => {
       message: "What is the Manager's name?",
       // validation to ensure the user enters a name longer than 1 character
       validate: (value) => {
-        if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
-        else return "Please enter a name!";
+        if (value.length > 1 && value.match(/^[A-Z\s]+$/i)) return true;
+        else return "Please enter a valid name!";
       },
     },
     {
@@ -36,7 +33,7 @@ const createManager = () => {
       // validates if the user enters a number using regex expression
       validate: (value) => {
         if (value.match(/^\d+$/)) return true;
-        else return "Please enter a valid ID Number.";
+        else return "Please enter a valid ID Number (numeric).";
       },
     },
     {
@@ -56,7 +53,7 @@ const createManager = () => {
       // validates if the user enters a number using regex expression
       validate: (value) => {
         if (value.match(/^\d+$/)) return true;
-        else return "Please enter a valid ID Number.";
+        else return "Please enter a valid Office Number (numeric).";
       },
     },
   ];
@@ -77,7 +74,7 @@ const createManager = () => {
       managerOfficeNumber
     );
     employees.push(manager);
-    //console.log(manager);
+
     newTeamMember();
   });
 };
@@ -95,12 +92,8 @@ const newTeamMember = () => {
     if (answers.createTeam === "Engineer") createEngineer();
     else if (answers.createTeam === "Intern") createIntern();
     else {
-      // After the user has input all employees desired, call the `render` function (required
-      // above) and pass in an array containing all employee objects; the `render` function will
-      // generate and return a block of HTML including templated divs for each employee!
-      console.log(employees);
       writeTeamPage(render(employees));
-      console.log("Done!");
+      console.log("Team Page Rendered!");
     }
   });
 };
@@ -114,8 +107,8 @@ const createEngineer = () => {
       message: "What is the Engineer's name?",
       // validation to ensure the user enters a name longer than 1 character
       validate: (value) => {
-        if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
-        else return "Please enter a name!";
+        if (value.length > 1 && value.match(/^[A-Z\s]+$/i)) return true;
+        else return "Please enter a valid name!";
       },
     },
     {
@@ -125,7 +118,7 @@ const createEngineer = () => {
       // validates if the user enters a number using regex expression
       validate: (value) => {
         if (value.match(/^\d+$/)) return true;
-        else return "Please enter a valid ID Number.";
+        else return "Please enter a valid ID Number (numeric).";
       },
     },
     {
@@ -173,8 +166,8 @@ const createIntern = () => {
       message: "What is the Intern's name?",
       // validation to ensure the user enters a name longer than 1 character
       validate: (value) => {
-        if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
-        else return "Please enter a name!";
+        if (value.length > 1 && value.match(/^[A-Z\s]+$/i)) return true;
+        else return "Please enter a valid name!";
       },
     },
     {
@@ -184,7 +177,7 @@ const createIntern = () => {
       // validates if the user enters a number using regex expression
       validate: (value) => {
         if (value.match(/^\d+$/)) return true;
-        else return "Please enter a valid ID Number.";
+        else return "Please enter a valid ID Number (numeric).";
       },
     },
     {
@@ -203,8 +196,8 @@ const createIntern = () => {
       message: "What is the Intern's School?",
       // validation to ensure the user enters a school name longer than 1 character
       validate: (value) => {
-        if (value.length > 1 && value.match(/^[A-Z]+$/i)) return true;
-        else return "Please enter a School!";
+        if (value.length > 1 && value.match(/^[A-Z\s]+$/i)) return true;
+        else return "Please enter a valid School!";
       },
     },
   ];
@@ -221,16 +214,6 @@ const createIntern = () => {
 
 createManager();
 
-//=====================
-// Delete pseudocode instructions
-//==========================
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
 // creates the final html page with all employee data and html files
 const writeTeamPage = (data) => {
   // checks to see if the output directory exists and creates it if it does not exist
@@ -244,17 +227,3 @@ const writeTeamPage = (data) => {
     console.log("Team Page Generated!");
   });
 };
-
-//================================
-// Delete below here
-//================================
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
