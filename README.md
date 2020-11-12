@@ -13,6 +13,7 @@ Once the user is finished with creating the team via the prompts, the applicatio
 - [Application Screenshot](#application-screenshot)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Unit Tests](#unit-tests)
 - [Credits](#credits)
 
 ## User Story
@@ -54,6 +55,22 @@ node app.js
 This will start the prompts to create an engineering team. Go through and answer each prompt and add as many team members as desired. Once the last team member prompt is answered, a 'team.html' file will be created in the 'output/' directory. This file can be opened in any browser to display the team webpage.
 
 A video of this can be found at the following link [Engineering Team Generator Walkthrough Video](https://drive.google.com/file/d/1xKqhLXCecNWQMGbXBP_bN95fOpe5IZvo/view?usp=sharing).
+
+## Unit Tests
+
+Unit tests are included in the 'test/' directory that allow for testing of the JavaScript classes used for this project. The child classes (Manager, Engineer and Intern) used were all extended from the Employee class.
+
+These tests can be run by using the following command in the project directory terminal.
+
+```node.js
+npm run test
+```
+
+When this command is run in the terminal you will see the following output.
+
+![Unit Test Results](./Assets/unit-tests.jpg "Unit Test Results")
+
+_Sample screenshot of the unit tests that ensure the JavaScript classes are functioning_
 
 ## Credits
 
