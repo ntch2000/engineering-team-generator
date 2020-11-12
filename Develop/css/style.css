@@ -1,0 +1,35 @@
+body {
+  background-color: #b1d4e0;
+}
+
+/* sets the color and text of the jumbotron header */
+.jumbotron {
+  background-color: #0c2d48;
+  color: white;
+  font-family: "Varela", sans-serif;
+}
+
+/* sets the styling for the employee cards */
+.card {
+  box-shadow: 5px 5px 7px black;
+}
+
+.card-header {
+  background-color: #145da0;
+  color: white;
+}
+
+h2 {
+  font-family: "Varela", sans-serif;
+}
+
+.card-body {
+  background-color: #c9dbe0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+/* link styling */
+a {
+  color: #14849b;
+}
