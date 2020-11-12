@@ -10,8 +10,8 @@ Once the user is finished with creating the team via the prompts, the applicatio
 
 - [Description](#description)
 - [User Story](#user-story)
-- [Installation](#installation)
 - [Application Screenshot](#application-screenshot)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
 
